@@ -13,18 +13,23 @@ contract FundMe {
     uint256 public minUSD = 10 * 1e18;
 
     address[] public funders;
-    mapping(address => uint256) public addressToAmountFended;
+    mapping(address => uint256) public addressToAmountFunded;
 
     function fund() public payable {
         require(msg.value.getConversionRate() >= minUSD, "Requires at least 1ETH");
         funders.push(msg.sender);
-        addressToAmountFended[msg.sender] = msg.value;
+        addressToAmountFunded[msg.sender] = msg.value;
     }
 
-
-
-    // function withdraw() {
-    //     ;
-    // }
+    function withdraw() public {
+        for (uint256 funderIndex=0; funderIndex < funders.length; funderIndex++){
+            address funder = funders[funderIndex];
+            addressToAmountFunded[funder] = 0;
+        }
+        funders = new address[](0);
+        (bool callSuccess, ) = payable(msg.sender).call{value: address(this).balance}("");
+        require(callSuccess, "Call failed");
+        
+    }
 
 }
