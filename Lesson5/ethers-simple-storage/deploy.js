@@ -1,18 +1,18 @@
 const ethers = require("ethers");
-const { TransactionReceipt } = require("ethers/src.ts/providers");
 const fs = require("fs-extra");
+require("dotenv").config();
 
 // synchronous [solidity]
 // asynchronous [javascript]
 
 async function main() {
-  const provider = new ethers.providers.JsonRpcProvider("http//127.0.0.1:7545");
-  const wallet = new ethers.wallet(
-    "0xb2ea5efb8d1a0f9e5da886f9771193116ad5c9f4d1928ec3d6999a4294822072",
-    provider
+  const provider = new ethers.JsonRpcProvider(process.env.RPC_URL);
+  const wallet = new ethers.Wallet(process.env.PRIVATE_KEY, provider);
+  const abi = fs.readFileSync("./SimpleStorage_sol_SimpleStorage.abi", "utf8");
+  const binary = fs.readFileSync(
+    "./SimpleStorage_sol_SimpleStorage.bin",
+    "utf8"
   );
-  const abi = fs.readFileSync("./SimpleStorage_sol_SimleStorage.abi", "utf8");
-  const binary = fs.readFileSync("./SimpleStorage_sol_SimpleStorage", "utf8");
   const contractFactory = new ethers.ContractFactory(abi, binary, wallet);
   // ether.js 部署合约
   console.log("Deploying! Please wait ...");
