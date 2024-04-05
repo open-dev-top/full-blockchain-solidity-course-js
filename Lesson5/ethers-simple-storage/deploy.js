@@ -1,4 +1,5 @@
 const ethers = require("ethers");
+const { TransactionReceipt } = require("ethers/src.ts/providers");
 const fs = require("fs-extra");
 
 // synchronous [solidity]
@@ -14,8 +15,13 @@ async function main() {
   const binary = fs.readFileSync("./SimpleStorage_sol_SimpleStorage", "utf8");
   const contractFactory = new ethers.ContractFactory(abi, binary, wallet);
   console.log("Deploying! Please wait ...");
-  const contract = await contractFactory.deploy();
+  const contract = await contractFactory.deploy({ gasLimit: 3000000 });
   console.log(contract);
+  const deploymentReceipt = await await contract.deployTransaction.wait(1);
+  console.log("Here is the deployment transcation: ");
+  console.log(contract.deployTransaction);
+  console.log("Here is the transaction deceipt:");
+  console.log(transactionReceipt);
 }
 
 main()
