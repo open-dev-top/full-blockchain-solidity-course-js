@@ -1,0 +1,13 @@
+alex@Alexs-Laptop hardhat-simple-storage % yarn hardhat run scripts/deploy.js --network sepolia
+yarn run v1.22.22
+warning ../../package.json: No license field
+$ /Users/alex/Projects/full-blockchain-solidity-course-js/Lesson6/hardhat-simple-storage/node_modules/.bin/hardhat run scripts/deploy.js --network sepolia
+Deploying contract...
+Deployed contract to: 0xb9A2cCdCA572BeA4DC64d8d6495Ec34997767ccA
+Waiting for block confirmations...
+Verifying contract...
+The contract 0xb9A2cCdCA572BeA4DC64d8d6495Ec34997767ccA has already been verified on Etherscan.
+https://sepolia.etherscan.io/address/0xb9A2cCdCA572BeA4DC64d8d6495Ec34997767ccA#code
+Current Value is: 0
+Updated Value is: 7
+✨  Done in 99.19s.

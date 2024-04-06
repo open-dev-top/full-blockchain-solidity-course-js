@@ -1,15 +1,34 @@
-const { buildModule } = require("@nomicfoundation/hardhat-ignition/modules");
+// I'm a comment!
+// SPDX-License-Identifier: MIT
 
-const JAN_1ST_2030 = 1893456000;
-const ONE_GWEI = 1_000_000_000n;
+pragma solidity 0.8.8;
 
-module.exports = buildModule("LockModule", (m) => {
-  const unlockTime = m.getParameter("unlockTime", JAN_1ST_2030);
-  const lockedAmount = m.getParameter("lockedAmount", ONE_GWEI);
+// pragma solidity ^0.8.0;
+// pragma solidity >=0.8.0 <0.9.0;
 
-  const lock = m.contract("Lock", [unlockTime], {
-    value: lockedAmount,
-  });
+contract SimpleStorage {
+  uint256 favoriteNumber;
 
-  return { lock };
-});
+  struct People {
+    uint256 favoriteNumber;
+    string name;
+  }
+
+  // uint256[] public anArray;
+  People[] public people;
+
+  mapping(string => uint256) public nameToFavoriteNumber;
+
+  function store(uint256 _favoriteNumber) public {
+    favoriteNumber = _favoriteNumber;
+  }
+
+  function retrieve() public view returns (uint256) {
+    return favoriteNumber;
+  }
+
+  function addPerson(string memory _name, uint256 _favoriteNumber) public {
+    people.push(People(_favoriteNumber, _name));
+    nameToFavoriteNumber[_name] = _favoriteNumber;
+  }
+}
