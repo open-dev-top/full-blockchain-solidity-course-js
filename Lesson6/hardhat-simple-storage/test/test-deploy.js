@@ -21,4 +21,13 @@ describe("SimpleStorage", function(){
     const currentValue = await simpleStorage.retrieve()
     assert.equal(currentValue.toString(), expectedValue)
   })
+  it.only("Should add people with favornumber when we call add Person", async function(){
+    const expectedPeople = "Lisa"
+    const expectedValue = "2"
+    const transactionResponse = await simpleStorage.addPerson(expectedPeople, expectedValue)
+    await transactionResponse.wait(1)
+
+    const currentValue = await simpleStorage.retrieve()
+    assert.equal(currentValue.toString(), expectedValue)
+  })
 })
