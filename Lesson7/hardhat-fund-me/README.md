@@ -20,7 +20,11 @@ yarn solhint --init
 yarn add --dev prettier prettier-plugin-solidity
 
 # others install
-yarn add @chainlink/contracts
+yarn add --dev @chainlink/contracts
+
+yarn add --dev hardhat-deploy
+
+yarn add --dev dotenv
 ```
 
 ## Contract Test
