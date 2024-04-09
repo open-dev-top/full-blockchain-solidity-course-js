@@ -20,11 +20,13 @@ yarn solhint --init
 yarn add --dev prettier prettier-plugin-solidity
 
 # others install
+yarn add --dev dotenv
+
 yarn add --dev @chainlink/contracts
 
 yarn add --dev hardhat-deploy
 
-yarn add --dev dotenv
+yarn add --dev  @nomiclabs/hardhat-ethers hardhat-deploy-ethers ethers
 ```
 
 ## Contract Test
