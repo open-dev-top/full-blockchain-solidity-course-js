@@ -1,6 +1,9 @@
 node_modules
 .env
 
+# Remix files
+/contracts/artifacts
+
 # Hardhat files
 /cache
 /artifacts
