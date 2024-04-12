@@ -4,9 +4,11 @@ import { abi, contractAddress } from "./constants.js"
 const connectButton = document.getElementById("connectButton")
 const fundButton = document.getElementById("fundButton")
 const balanceButton = document.getElementById("balanceButton")
+const withdrawButton = document.getElementById("withdrawButton")
 connectButton.onclick = connect
 fundButton.onclick = fund
 balanceButton.onclick = getBalance
+withdrawButton.onclick = withdraw
 
 // console.log(ethers)
 
@@ -61,7 +63,7 @@ async function fund() {
     }
 }
 
-// transaction listen function
+// transaction listener
 function listenForTransactionMine(transactionResponse, provider) {
     console.log(`Mining ${transactionResponse.hash}...`)
     // listen for this transaction to finish
@@ -76,3 +78,16 @@ function listenForTransactionMine(transactionResponse, provider) {
 }
 
 // withdraw function
+async function withdraw() {
+    if (typeof window.ethereum !== "undefined") {
+        const provider = new ethers.providers.Web3Provider(window.ethereum)
+        const singer = provider.getSigner()
+        const contract = new ethers.Contract(contractAddress, abi, singer)
+        try {
+            const transactionResponse = await contract.withdraw()
+            await listenForTransactionMine(transactionResponse, provider)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+}
