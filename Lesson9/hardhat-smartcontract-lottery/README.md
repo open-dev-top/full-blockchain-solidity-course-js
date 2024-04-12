@@ -34,6 +34,10 @@ yarn add --dev @nomiclabs/hardhat-ethers@npm:hardhat-deploy-ethers ethers @nomic
 # or
 yarn install #> recommend
 
+yarn add --dev @chainlink/contracts
+
+yarn global add hardhat-shorthand
+hardhat-completion install
 ```
 
 ## Test
@@ -41,6 +45,7 @@ yarn install #> recommend
 ```shell
 yarn hardhat compile
 
+hh compile
 
 
 ```

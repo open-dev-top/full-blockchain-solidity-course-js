@@ -1,10 +1,54 @@
 {
   "_format": "hh-sol-cache-2",
   "files": {
-    "/home/alex/full-blockchain-solidity-course-js/Lesson9/hardhat-smartcontract-lottery/contracts/Raffle.sol": {
-      "lastModificationDate": 1712914201001,
-      "contentHash": "059b10be9a3d3c0270a065d8c7caac3d",
+    "/Users/alex/Projects/full-blockchain-solidity-course-js/Lesson9/hardhat-smartcontract-lottery/contracts/Raffle.sol": {
+      "lastModificationDate": 1712937412688,
+      "contentHash": "1bc9bca6eae4102524118ac4a29b0f15",
       "sourceName": "contracts/Raffle.sol",
+      "solcConfig": {
+        "version": "0.8.7",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc",
+                "storageLayout",
+                "evm.gasEstimates"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "metadata": {
+            "useLiteralContent": true
+          }
+        }
+      },
+      "imports": [
+        "@chainlink/contracts/src/v0.8/vrf/VRFConsumerBaseV2.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.7"
+      ],
+      "artifacts": [
+        "Raffle"
+      ]
+    },
+    "/Users/alex/Projects/full-blockchain-solidity-course-js/Lesson9/hardhat-smartcontract-lottery/node_modules/@chainlink/contracts/src/v0.8/vrf/VRFConsumerBaseV2.sol": {
+      "lastModificationDate": 1712920624080,
+      "contentHash": "eb9cc526ef59dfc4d644f56ddca0633a",
+      "sourceName": "@chainlink/contracts/src/v0.8/vrf/VRFConsumerBaseV2.sol",
       "solcConfig": {
         "version": "0.8.7",
         "settings": {
@@ -37,10 +81,10 @@
       },
       "imports": [],
       "versionPragmas": [
-        "^0.8.7"
+        "^0.8.4"
       ],
       "artifacts": [
-        "Raffle"
+        "VRFConsumerBaseV2"
       ]
     }
   }
