@@ -2,7 +2,7 @@
 
 If you learn this, you have the skills to learn all the rest of these smart contract concepts, and you are going to be able to do great things in this space.
 
-## Install part-1
+## Install Env
 
 ```shell
 # installs NVM (Node Version Manager)
@@ -22,7 +22,7 @@ corepack enable
 yarn -v # should print `1.22.22`
 ```
 
-## Install part-2
+## Install Tool
 
 ```shell
 yarn add --dev hardhat@2.9.3
@@ -33,5 +33,14 @@ yarn hardhat
 yarn add --dev @nomiclabs/hardhat-ethers@npm:hardhat-deploy-ethers ethers @nomiclabs/hardhat-etherscan @nomiclabs/hardhat-waffle chai ethereum-waffle hardhat hardhat-contract-sizer hardhat-deploy hardhat-gas-reporter prettier prettier-plugin-solidity solhint solidity-coverage dotenv
 # or
 yarn install #> recommend
+
+```
+
+## Test
+
+```shell
+yarn hardhat compile
+
+
 
 ```
