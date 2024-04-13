@@ -1,7 +1,7 @@
 const { network } = require("hardhat")
 const { developmentChains } = require("../helper-hardhat-config")
 
-const BASE_FEE = ethers.utils.parseEther("0.25") // Sepolia testnet Premium
+const BASEF_EE = ethers.utils.parseEther("0.25") // Sepolia testnet Premium
 const GAS_PRICE_LINK = 1e9
 
 module.exports = async ({ getNamedAccounts, deployments }) => {
