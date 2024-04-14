@@ -106,4 +106,30 @@ const VRF_SUB_FUND_AMOUNT = ethers.utils.parseEther("2")
                   assert(upkeepNeeded)
               })
           })
+
+          describe("performUpkeep", function () {
+              it("can only run if checkupkeep is true", async () => {
+                  await raffle.enterRaffle({ value: raffleEntranceFee })
+                  await network.provider.send("evm_increaseTime", [interval.toNumber() + 1])
+                  await network.provider.request({ method: "evm_mine", params: [] })
+                  const tx = await raffle.performUpkeep("0x")
+                  assert(tx)
+              })
+              it("reverts if checkupkeep is false", async () => {
+                  await expect(raffle.performUpkeep("0x")).to.be.revertedWith(
+                      "Raffle__UpkeepNotNeeded"
+                  )
+              })
+              it("updates the raffle state and emits a requestId (calls the vrf coordinator)", async () => {
+                  await raffle.enterRaffle({ value: raffleEntranceFee })
+                  await network.provider.send("evm_increaseTime", [interval.toNumber() + 1])
+                  await network.provider.request({ method: "evm_mine", params: [] })
+                  const txResponse = await raffle.performUpkeep("0x") // emits requestId
+                  const txReceipt = await txResponse.wait(1) // waits 1 block
+                  const raffleState = await raffle.getRaffleState() // updates state
+                  const requestId = txReceipt.events[1].args.requestId
+                  assert(requestId.toNumber() > 0)
+                  assert(raffleState.toString, "1") // 0 = open, 1 = calculating
+              })
+          })
       })
