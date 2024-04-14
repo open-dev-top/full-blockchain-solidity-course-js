@@ -4,6 +4,8 @@ npx create-next-app@12.1.5 .
 
 # Then, copy the example's package.json and yarn. lock file in this folder
 yarn install
+yarn add --dev prettier
+yarn add react react-dom moralis-v1 react-moralis
 
 # Test, if anything run correctly
 yarn run dev
