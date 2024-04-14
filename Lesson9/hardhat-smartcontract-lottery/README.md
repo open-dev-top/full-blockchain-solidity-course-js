@@ -48,4 +48,10 @@ yarn hardhat compile
 hh compile
 
 hh test --grep "describe or it"
+
+==========
+
+hh deploy --network sepolia
+
+hh test --network sepolia
 ```

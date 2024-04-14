@@ -2,16 +2,14 @@ const { network, deployments, ethers } = require("hardhat")
 const { developmentChains, networkConfig } = require("../../helper-hardhat-config")
 const { assert, expect } = require("chai")
 
-const VRF_SUB_FUND_AMOUNT = ethers.utils.parseEther("2")
-
 !developmentChains.includes(network.name)
     ? describe.skip
     : describe("Raffle Uint Tests", function () {
-          let deploy, raffle, vrfCoordinatorV2Mock, raffleEntranceFee, interval, subscriptionId
+          let deployer, raffle, vrfCoordinatorV2Mock, raffleEntranceFee, interval
           const chainId = network.config.chainId
 
           beforeEach(async function () {
-              const { deployer } = await getNamedAccounts()
+              //   deployer = (await getNamedAccounts()).deployer
               accounts = await ethers.getSigners()
               await deployments.fixture(["all"])
               raffle = await ethers.getContract("Raffle", deployer)
