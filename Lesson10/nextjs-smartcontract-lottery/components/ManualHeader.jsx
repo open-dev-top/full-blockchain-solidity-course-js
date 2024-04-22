@@ -5,7 +5,13 @@ export default function ManualHeader() {
 
     return (
         <div>
-            <button>Connect Your Wallet</button>
+            <button
+                onClick={async () => {
+                    await enableWeb3()
+                }}
+            >
+                Connect
+            </button>
         </div>
     )
 }
