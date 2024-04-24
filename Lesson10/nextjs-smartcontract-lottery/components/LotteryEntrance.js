@@ -11,6 +11,14 @@ export default function LotteryEntrance() {
     const raffleAddress = chainId in contractAddresses ? contractAddresses[chainId][0] : null
     const [entranceFee, setEntranceFee] = useState("0")
 
+    const { runContractFunction: enterRaffle } = useWeb3Contract({
+        abi: abi,
+        contractAddress: raffleAddress,
+        functionName: "enterRaffle",
+        params: {},
+        msgValue: entranceFee,
+    })
+
     const { runContractFunction: getEntranceFee } = useWeb3Contract({
         abi: abi,
         contractAddress: raffleAddress,
@@ -23,7 +31,7 @@ export default function LotteryEntrance() {
             async function updateUI() {
                 const entranceFeeFromCall = (await getEntranceFee()).toString()
                 // console.log(entranceFee)
-                setEntranceFee(ethers.utils.formatUnits(entranceFeeFromCall, "ether"))
+                setEntranceFee(entranceFeeFromCall)
             }
             updateUI()
         }
@@ -31,7 +39,21 @@ export default function LotteryEntrance() {
 
     return (
         <div>
-            Hi from lottery entrance!<div>Entrance Fee: {entranceFee} ETH</div>
+            Hi from lottery entrance!
+            {raffleAddress ? (
+                <div>
+                    <button
+                        onClick={async function () {
+                            await enterRaffle()
+                        }}
+                    >
+                        Enter Raffle
+                    </button>
+                    Entrance Fee: {ethers.utils.formatUnits(entranceFee, "ether")} ETH
+                </div>
+            ) : (
+                <div>No Raffle Address Detected</div>
+            )}
         </div>
     )
 }
