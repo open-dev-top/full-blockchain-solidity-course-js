@@ -8,9 +8,9 @@ module.exports = async () => {
         await updateContractAddresses()
         await updateAbi()
         console.log("Front end written!")
+        console.log("----------------------------------------------------")
     }
 }
-
 
 async function updateAbi() {
     const raffle = await ethers.getContract("Raffle")
@@ -22,7 +22,7 @@ async function updateContractAddresses() {
     const contractAddresses = JSON.parse(fs.readFileSync(frontEndContractsFile, "utf8"))
     if (network.config.chainId.toString() in contractAddresses) {
         if (!contractAddresses[network.config.chainId.toString()].includes(raffle.address)) {
-            contractAddresses[network.config.chainId.toString()]=raffle.address
+            contractAddresses[network.config.chainId.toString()] = raffle.address
         }
     } else {
         contractAddresses[network.config.chainId.toString()] = [raffle.address]
