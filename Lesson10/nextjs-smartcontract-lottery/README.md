@@ -12,6 +12,10 @@ yarn run dev
 #> http://localhost:3000
 
 yarn add web3uikit
+
+yarn build
+npx browserslist@latest --update-db
+yarn next export
 ```
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
