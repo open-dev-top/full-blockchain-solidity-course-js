@@ -16,4 +16,4 @@ async function getWeth() {
     // console.log(`Got ${ethers.utils.parseEther(wethBalance.toString(), "ETH")} ETH`)
 }
 
-module.exports = { getWeth }
+module.exports = { getWeth, AMOUNT }
