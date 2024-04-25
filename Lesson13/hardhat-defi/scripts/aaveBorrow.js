@@ -15,6 +15,16 @@ async function main() {
     console.log("Depositing...")
     await lendingPool.deposit(wethTokenAddress, AMOUNT, deployer, 0)
     console.log("Deposited!")
+    let { availableBorrowsETH, totalDebtETH } = await getBorrowUserData(lendingPool, deployer)
+}
+
+async function getBorrowUserData(lendingPool, account) {
+    const { totalCollateralETH, totalDebtETH, availableBorrowsETH } =
+        await lendingPool.getUserAccountData(account)
+    console.log(`You have ${totalCollateralETH} worth of ETH deposited.`)
+    console.log(`You have ${totalDebtETH} worth of ETH borrowed.`)
+    console.log(`You can borrow ${availableBorrowsETH} worth of ETH.`)
+    return { availableBorrowsETH, totalDebtETH }
 }
 
 async function getLendingPool(account) {
