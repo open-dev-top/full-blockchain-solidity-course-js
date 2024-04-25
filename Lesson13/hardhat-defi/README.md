@@ -32,4 +32,5 @@ yarn add --dev @nomiclabs/hardhat-ethers@npm:hardhat-deploy-ethers ethers @nomic
 yarn hardhat compile
 
 yarn hardhat run scripts/aaveBorrow.js --network hardhat
+yarn add --dev @avve/protocol-v2
 ```
