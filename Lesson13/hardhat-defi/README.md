@@ -31,4 +31,5 @@ yarn add --dev @nomiclabs/hardhat-ethers@npm:hardhat-deploy-ethers ethers @nomic
 # and then use yarn install
 yarn hardhat compile
 
+yarn hardhat run scripts/aaveBorrow.js --network hardhat
 ```
