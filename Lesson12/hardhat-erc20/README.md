@@ -18,6 +18,7 @@ corepack enable
 yarn -v # should print `1.22.22`
 
 yarn add --dev hardhat@2.9.3
-
 yarn hardhat
+
+yarn add --dev @openzeppelin/contracts@4
 ```
