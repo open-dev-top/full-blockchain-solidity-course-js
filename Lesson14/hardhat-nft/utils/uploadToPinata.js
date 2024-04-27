@@ -9,23 +9,27 @@ const pinata = new pinataSDK(pinataApiKey, pinataApiSecret)
 
 async function storeImages(imagesFilePath) {
     const fullImagesPath = path.resolve(imagesFilePath)
+    // const files = fs.readdirSync(fullImagesPath)
+    // console.log(files)
 
     // Filter the files in case there's a file that in not a .png, .jpg or .jpeg
-    const files = fs.readdirSync(fullImagesPath).filter((file) => (/\b.png|\b.jpg|\b.jpeg/).test(file))
+    const files = fs
+        .readdirSync(fullImagesPath)
+        .filter((file) => /\b.png|\b.jpg|\b.jpeg/.test(file))
 
     const responses = []
     console.log("Uploading to IPFS")
 
     for (const fileIndex in files) {
         const readableStreamForFile = fs.createReadStream(`${fullImagesPath}/${files[fileIndex]}`)
-        const options = {
-            pinataMetadata: {
-                name: files[fileIndex],
-            },
-        }
+        // const options = {
+        //     pinataMetadata: {
+        //         name: files[fileIndex],
+        //     },
+        // }
         try {
             await pinata
-                .pinFileToIPFS(readableStreamForFile, options)
+                .pinFileToIPFS(readableStreamForFile /*, options*/)
                 .then((result) => {
                     responses.push(result)
                 })
@@ -40,13 +44,13 @@ async function storeImages(imagesFilePath) {
 }
 
 async function storeTokenUriMetadata(metadata) {
-    const options = {
-        pinataMetadata: {
-            name: metadata.name,
-        },
-    }
+    // const options = {
+    //     pinataMetadata: {
+    //         name: metadata.name,
+    //     },
+    // }
     try {
-        const response = await pinata.pinJSONToIPFS(metadata, options)
+        const response = await pinata.pinJSONToIPFS(metadata /*, options*/)
         return response
     } catch (error) {
         console.log(error)
