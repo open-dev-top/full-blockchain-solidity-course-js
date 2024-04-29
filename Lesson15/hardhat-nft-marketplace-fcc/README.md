@@ -2,6 +2,10 @@
 yarn add @nomiclabs/hardhat-etherscan
 yarn hardhat deploy --tags nftmarketplace
 yarn hardhat deploy --tags basicnft
+yarn hardhat coverage
+
+yarn hardhat node
+yarn hardhat run scripts/mint-and-list-item.js --network localhost
 ```
 
 # Hardhat NFT Marketplace
